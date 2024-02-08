@@ -1,12 +1,12 @@
-### Título del Script: Configuración de dominio .cu con Bind9 en Ubuntu
+### Título del Script: Configuración de dominio en servidor Bind9 en Ubuntu
 
 #### Readme.md
 
 ---
 
 **Antes de comenzar:**
-
-Antes de ejecutar este script, con este script podrás instalar un servidor DNS para poder administrar tus dominios .cu, asegúrate de haber actualizado e instalado las últimas actualizaciones y dependencias del sistema utilizando los siguientes comandos:
+Primeramente aclarar que el primer objetivo de este script es que de forma fácil las personas dueñas de un VPS y dueñas de dominios cubano, puedan crearse rápidamente un servidor DNS para controlar esos dominios, pero sirve para cualquier dominio y VPS en el mundo. 
+Antes de ejecutar este script, asegúrate de haber actualizado e instalado las últimas actualizaciones y dependencias del sistema utilizando los siguientes comandos:
 
 ```bash
 sudo apt update
