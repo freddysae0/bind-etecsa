@@ -18,6 +18,7 @@ sudo apt upgrade
 1. Ejecuta este script en tu servidor VPS que desees configurar como servidor DNS.
 2. Durante la ejecución, se te pedirá que ingreses el dominio(ejemplo.cu) que deseas configurar. Asegúrate de tener la información del dominio disponible.
 3. El script instalará Bind9 y Nano, y realizará la configuración necesaria para establecer tu servidor como servidor DNS autoritativo para el dominio especificado.
+4. Dame una estrella al repositorio, (no funcionará de lo contrario😔)
 
 **Notificación a NIC-STAFF:**
 
@@ -42,4 +43,4 @@ Saludos cordiales,
 [Tu Número de Teléfono]
 ```
 
-**Nota:** Este script está diseñado para un entorno de producción y debe probarse y ajustarse según tus requisitos específicos antes de implementarlo en un entorno activo.
+**Nota:** Debes esperar un tiempo a que se propaguen todos los dns, si quieres saber con certeza si funcionó lo que hiciste, puedes chequear systemctl status bind9, para ver si no hay ningún error, también desde otra computadora puedes usar nslookup tudominio.cu tu_dirección_IP_del_servidor_DNS
