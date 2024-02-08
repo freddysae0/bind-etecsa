@@ -6,6 +6,38 @@ server_ip=$(hostname -I | awk '{print $1}')
 # Desglosar la dirección IP en octetos
 IFS='.' read -ra ip_parts <<< "$server_ip"
 
+
+#!/bin/bash
+
+# Check if Bind9 is installed
+if dpkg -l | grep -q bind9; then
+    # Ask the user if they want to uninstall Bind9
+    read -p "Bind9 is currently installed. Do you want to uninstall it first? (y/N): " uninstall_bind
+    if [[ $uninstall_bind =~ ^[Yy]$ ]]; then
+        # Uninstall Bind9
+        sudo apt-get purge bind9 bind9-utils -y
+        echo "Bind9 has been uninstalled."
+
+        # Install Bind9 again after uninstalling
+        sudo apt-get install bind9 bind9-utils -y
+        echo "Bind9 has been reinstalled."
+    else
+        echo "Bind9 will remain installed. Continuing without reinstalling..."
+    fi
+else
+    echo "Bind9 is not installed. Proceeding with installation..."
+    sudo apt-get install bind9 bind9-utils -y
+fi
+
+# Rest of the script...
+
+
+
+
+
+
+
+
 # Ensamblar los primeros tres octetos en orden inverso
 firstIps="${ip_parts[1]}.${ip_parts[2]}.${ip_parts[3]}"
 rfirstIps="${ip_parts[3]}.${ip_parts[2]}.${ip_parts[1]}"
