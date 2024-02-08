@@ -1,4 +1,4 @@
-### Título del Script: Configuración de Servidor DNS Bind9 en Ubuntu
+### Título del Script: Configuración de dominio .cu con Bind9 en Ubuntu
 
 #### Readme.md
 
@@ -6,7 +6,7 @@
 
 **Antes de comenzar:**
 
-Antes de ejecutar este script, asegúrate de haber actualizado e instalado las últimas actualizaciones y dependencias del sistema utilizando los siguientes comandos:
+Antes de ejecutar este script, con este script podrás instalar un servidor DNS para poder administrar tus dominios .cu, asegúrate de haber actualizado e instalado las últimas actualizaciones y dependencias del sistema utilizando los siguientes comandos:
 
 ```bash
 sudo apt update
