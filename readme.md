@@ -31,11 +31,9 @@ Asunto: Solicitud de apuntamiento de dominio
 
 Estimado equipo de NIC-STAFF,
 
-Me gustaría solicitar que mi dominio, [tu_dominio], se apunte a la siguiente dirección IP: [dirección_IP_del_servidor_DNS]. He configurado un servidor DNS Bind9 en mi VPS con la dirección IP [dirección_IP_del_servidor_DNS] y he seguido las instrucciones para configurar el servidor DNS según las mejores prácticas.
+Me gustaría solicitar que mi dominio, [tu_dominio], se apunte a la siguiente dirección IP: [dirección_IP_del_servidor_DNS]. 
 
-Adjunto encontrarán el registro de configuración completo realizado en el servidor DNS. Si necesitan más información o realizar alguna verificación adicional, por favor no duden en ponerse en contacto conmigo.
-
-Agradezco su atención y espero su confirmación para completar este proceso.
+Agradezco su atención y espero su confirmación. Gracias.
 
 Saludos cordiales,
 [Tu Nombre]
