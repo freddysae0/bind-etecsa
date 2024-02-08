@@ -29,18 +29,11 @@ else
     sudo apt-get install bind9 bind9-utils -y
 fi
 
-# Rest of the script...
-
-
-
-
-
-
 
 
 # Ensamblar los primeros tres octetos en orden inverso
-firstIps="${ip_parts[1]}.${ip_parts[2]}.${ip_parts[3]}"
-rfirstIps="${ip_parts[3]}.${ip_parts[2]}.${ip_parts[1]}"
+firstIps="${ip_parts[0]}.${ip_parts[1]}.${ip_parts[2]}"
+rfirstIps="${ip_parts[2]}.${ip_parts[1]}.${ip_parts[0]}"
 
 # Solicitar al usuario que ingrese su dominio
 read -p "Introduce tu dominio: " domain
@@ -53,18 +46,9 @@ if [[ ! $domain =~ $validate ]]; then
 fi
 
 
-# Actualización del sistema
-echo "Actualizando el sistema..."
-sudo apt update
-sudo apt upgrade -y
-
 # Instalación de Bind9 y Nano
 echo "Instalando Bind9 y Nano..."
 sudo apt install -y bind9 bind9-utils nano
-
-# Verificar el estado de Bind9
-echo "Verificando el estado de Bind9..."
-systemctl status bind9
 
 # Permitir el acceso al puerto y protocolo que utiliza Bind9 en el firewall
 echo "Permitiendo el acceso al puerto y protocolo de Bind9 en el firewall..."
@@ -73,9 +57,14 @@ sudo ufw allow bind9
 # Configuración mínima de Bind9
 echo "Configurando Bind9..."
 cat > /tmp/named.conf.options <<EOF
-listen-on { any; };
-allow-query { any; };
-dnssec-validation no;
+
+options{
+
+    directory "/var/cache/bind";
+    listen-on { any; };
+    allow-query { any; };
+    dnssec-validation no;
+};
 EOF
 sudo mv /tmp/named.conf.options /etc/bind/named.conf.options
 
@@ -87,8 +76,7 @@ sudo sed -i 's/OPTIONS=""/OPTIONS="-u bind -4"/' /etc/default/named
 echo "Comprobando la configuración de Bind9..."
 sudo named-checkconf
 sudo systemctl restart bind9
-echo "Verificando el estado de Bind9 después del reinicio..."
-systemctl status bind9
+
 
 # Agregar las zonas
 echo "Agregando zonas a la configuración de Bind9..."
@@ -100,7 +88,7 @@ zone "$domain" IN {
 
 zone "${rfirstIps}.in-addr.arpa" {
     type master;
-    file "/etc/bind/zonas/db.${firstsIps}";
+    file "/etc/bind/zonas/db.$firstIps";
 };
 EOF
 sudo mkdir -p /etc/bind/zonas
@@ -123,6 +111,7 @@ cat > /etc/bind/zonas/db.$domain <<EOF
         IN      NS      ns1.$domain.
 ns1     IN      A       $server_ip
 www     IN      A       $server_ip
+@       IN      A       $server_ip
 EOF
 
 
